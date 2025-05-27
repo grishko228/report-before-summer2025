@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>До лета 2025 осталось...</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+        }
+        .creator {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+        h1 {
+            color: #e74c3c;
+            margin-bottom: 25px;
+        }
+        .main-countdown {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 25px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .day-countdown {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .day {
+            background: #f1f1f1;
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 150px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .day-title {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .day-time {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        .progress-bar {
+            height: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            margin: 25px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            width: 0%;
+            transition: width 1s linear;
+        }
+        .emoji {
+            font-size: 2.5rem;
+            margin: 20px 0;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="creator">Создано DeepSeek | 27 мая 2025</div>
+        
+        <h1>До лета 2025 осталось:</h1>
+        
+        <div class="emoji" id="emoji">⏳</div>
+        
+        <div class="main-countdown" id="main-countdown">
+            <span id="main-days">00</span> :
+            <span id="main-hours">00</span> :
+            <span id="main-minutes">00</span> :
+            <span id="main-seconds">00</span>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <h2>До каждого дня:</h2>
+        <div class="day-countdown">
+            <div class="day">
+                <div class="day-title">28 мая</div>
+                <div class="day-time" id="day-28">00:00:00:00</div>
+            </div>
+            <div class="day">
+                <div class="day-title">29 мая</div>
+                <div class="day-time" id="day-29">00:00:00:00</div>
+            </div>
+            <div class="day">
+                <div class="day-title">30 мая</div>
+                <div class="day-time" id="day-30">00:00:00:00</div>
+            </div>
+            <div class="day">
+                <div class="day-title">31 мая</div>
+                <div class="day-time" id="day-31">00:00:00:00</div>
+            </div>
+            <div class="day">
+                <div class="day-title highlight">1 июня (ЛЕТО!)</div>
+                <div class="day-time highlight" id="day-summer">00:00:00:00</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Функция для форматирования времени
+        function formatTime(diff) {
+            if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            return { days, hours, minutes, seconds };
+        }
+        
+        // Функция для обновления всех счётчиков
+        function updateCountdown() {
+            const now = new Date();
+            const summer = new Date('June 1, 2025 00:00:00');
+            
+            // Основной счётчик до лета
+            const mainDiff = summer - now;
+            const mainTime = formatTime(mainDiff);
+            
+            document.getElementById('main-days').textContent = mainTime.days.toString().padStart(2, '0');
+            document.getElementById('main-hours').textContent = mainTime.hours.toString().padStart(2, '0');
+            document.getElementById('main-minutes').textContent = mainTime.minutes.toString().padStart(2, '0');
+            document.getElementById('main-seconds').textContent = mainTime.seconds.toString().padStart(2, '0');
+            
+            // Счётчики для каждого дня
+            const days = [
+                { id: 'day-28', date: new Date('May 28, 2025 00:00:00') },
+                { id: 'day-29', date: new Date('May 29, 2025 00:00:00') },
+                { id: 'day-30', date: new Date('May 30, 2025 00:00:00') },
+                { id: 'day-31', date: new Date('May 31, 2025 00:00:00') },
+                { id: 'day-summer', date: summer }
+            ];
+            
+            days.forEach(day => {
+                const diff = day.date - now;
+                const time = formatTime(diff);
+                document.getElementById(day.id).textContent = 
+                    `${time.days.toString().padStart(2, '0')}:` +
+                    `${time.hours.toString().padStart(2, '0')}:` +
+                    `${time.minutes.toString().padStart(2, '0')}:` +
+                    `${time.seconds.toString().padStart(2, '0')}`;
+            });
+            
+            // Прогресс-бар
+            const startDate = new Date('May 27, 2025');
+            const totalDays = Math.ceil((summer - startDate) / (1000 * 60 * 60 * 24));
+            const daysPassed = totalDays - mainTime.days;
+            const progress = (daysPassed / totalDays) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+            
+            // Меняем эмодзи
+            const emoji = document.getElementById('emoji');
+            if (mainDiff <= 0) {
+                emoji.innerHTML = "☀️🎉";
+                document.getElementById('main-countdown').innerHTML = "Лето наступило!";
+            } else if (mainTime.days < 1) {
+                emoji.innerHTML = "🔥";
+            } else if (mainTime.days < 3) {
+                emoji.innerHTML = "⏳";
+            } else {
+                emoji.innerHTML = "❄️";
+            }
+        }
+        
+        // Запускаем обновление каждую секунду
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
