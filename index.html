@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>До лета 2025 осталось...</title>
+    <title>Обратный отсчет до лета 2025</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #fffde4 0%, #b5e8ff 100%);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -17,13 +17,14 @@
             color: #333;
         }
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             padding: 30px;
             text-align: center;
             max-width: 800px;
             width: 90%;
+            border: 2px solid #ffd700;
         }
         .creator {
             font-size: 0.9rem;
@@ -32,8 +33,9 @@
             text-align: right;
         }
         h1 {
-            color: #e74c3c;
+            color: #ff6b6b;
             margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         .main-countdown {
             font-size: 2.2rem;
@@ -41,8 +43,9 @@
             color: #2c3e50;
             margin: 25px 0;
             padding: 15px;
-            background: #f8f9fa;
+            background: rgba(255, 236, 179, 0.3);
             border-radius: 10px;
+            border: 1px dashed #ffb347;
         }
         .day-countdown {
             display: flex;
@@ -52,11 +55,12 @@
             margin: 30px 0;
         }
         .day {
-            background: #f1f1f1;
+            background: rgba(255, 255, 255, 0.7);
             border-radius: 10px;
             padding: 15px;
             min-width: 150px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid #a8e6ff;
         }
         .day-title {
             font-weight: bold;
@@ -70,34 +74,52 @@
         }
         .progress-bar {
             height: 10px;
-            background: #ecf0f1;
+            background: #e0f7ff;
             border-radius: 5px;
             margin: 25px 0;
             overflow: hidden;
         }
         .progress {
             height: 100%;
-            background: linear-gradient(90deg, #3498db, #2ecc71);
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4);
             width: 0%;
             transition: width 1s linear;
         }
         .emoji {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin: 20px 0;
+            animation: pulse 2s infinite;
         }
         .highlight {
-            color: #e74c3c;
+            color: #ff6b6b;
             font-weight: bold;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .summer-decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            z-index: -1;
         }
     </style>
 </head>
 <body>
+    <!-- Летние декоративные элементы -->
+    <div class="summer-decoration" style="top: 10%; left: 10%;">🌞</div>
+    <div class="summer-decoration" style="top: 80%; left: 15%;">🌴</div>
+    <div class="summer-decoration" style="top: 20%; right: 10%;">🍉</div>
+    <div class="summer-decoration" style="bottom: 10%; right: 15%;">🏖️</div>
+    
     <div class="container">
         <div class="creator">Создано DeepSeek | 27 мая 2025</div>
         
         <h1>До лета 2025 осталось:</h1>
         
-        <div class="emoji" id="emoji">⏳</div>
+        <div class="emoji" id="emoji">🌞</div>
         
         <div class="main-countdown" id="main-countdown">
             <span id="main-days">00</span> :
@@ -188,17 +210,17 @@
             const progress = (daysPassed / totalDays) * 100;
             document.getElementById('progress').style.width = `${progress}%`;
             
-            // Меняем эмодзи
+            // Меняем эмодзи в зависимости от оставшегося времени
             const emoji = document.getElementById('emoji');
             if (mainDiff <= 0) {
-                emoji.innerHTML = "☀️🎉";
+                emoji.innerHTML = "🎉☀️";
                 document.getElementById('main-countdown').innerHTML = "Лето наступило!";
             } else if (mainTime.days < 1) {
-                emoji.innerHTML = "🔥";
+                emoji.innerHTML = "⏳🔥";
             } else if (mainTime.days < 3) {
-                emoji.innerHTML = "⏳";
+                emoji.innerHTML = "🌅🌊";
             } else {
-                emoji.innerHTML = "❄️";
+                emoji.innerHTML = "🌞🍹";
             }
         }
         
