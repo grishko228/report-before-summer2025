@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Обратный отсчет до лета 2025</title>
+    <title>Обратный отсчёт до лета 2025</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -24,7 +24,7 @@
             text-align: center;
             max-width: 800px;
             width: 90%;
-            border: 2px solid #ffd700;
+            border: 2px solid #ffb347;
         }
         .creator {
             font-size: 0.9rem;
@@ -32,16 +32,25 @@
             margin-bottom: 10px;
             text-align: right;
         }
+        .header-image {
+            max-width: 180px; /* Уменьшенный размер */
+            height: auto;
+            margin: 0 auto 15px;
+            border-radius: 10px;
+            border: 3px solid #ffb347;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: block;
+        }
         h1 {
             color: #ff6b6b;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         .main-countdown {
             font-size: 2.2rem;
             font-weight: bold;
             color: #2c3e50;
-            margin: 25px 0;
+            margin: 20px 0;
             padding: 15px;
             background: rgba(255, 236, 179, 0.3);
             border-radius: 10px;
@@ -52,7 +61,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
-            margin: 30px 0;
+            margin: 25px 0;
         }
         .day {
             background: rgba(255, 255, 255, 0.7);
@@ -76,7 +85,7 @@
             height: 10px;
             background: #e0f7ff;
             border-radius: 5px;
-            margin: 25px 0;
+            margin: 20px 0;
             overflow: hidden;
         }
         .progress {
@@ -87,7 +96,7 @@
         }
         .emoji {
             font-size: 3rem;
-            margin: 20px 0;
+            margin: 15px 0;
             animation: pulse 2s infinite;
         }
         .highlight {
@@ -104,6 +113,11 @@
             font-size: 1.5rem;
             opacity: 0.6;
             z-index: -1;
+            animation: float 10s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
     </style>
 </head>
@@ -116,6 +130,9 @@
     
     <div class="container">
         <div class="creator">Создано DeepSeek | 27 мая 2025</div>
+        
+        <!-- Ваше изображение -->
+        <img src="https://i.postimg.cc/kMYX7NzX/i-51.jpg" alt="С первым днём лета!" class="header-image">
         
         <h1>До лета 2025 осталось:</h1>
         
@@ -210,7 +227,7 @@
             const progress = (daysPassed / totalDays) * 100;
             document.getElementById('progress').style.width = `${progress}%`;
             
-            // Меняем эмодзи в зависимости от оставшегося времени
+            // Меняем эмодзи
             const emoji = document.getElementById('emoji');
             if (mainDiff <= 0) {
                 emoji.innerHTML = "🎉☀️";
